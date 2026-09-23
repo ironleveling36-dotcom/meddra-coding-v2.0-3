@@ -1,0 +1,23 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "dockerfile"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "startCommand": "gunicorn -w 4 -b 0.0.0.0:$PORT app.main:app",
+    "restartPolicyCondition": "on-failure",
+    "restartPolicyMaxRetries": 3
+  },
+  "variables": {
+    "AI_ENABLED": "true",
+    "AI_API_BASE_URL": "https://api.hcnsec.cn/v1",
+    "AI_MODEL": "sensenova-6.8-flash-lite",
+    "ENABLE_SEMANTIC": "true",
+    "RESPONSE_CACHE_TTL": "300",
+    "QUERY_CACHE_SIZE": "1024",
+    "LOG_LEVEL": "INFO",
+    "PORT": "8000",
+    "HOST": "0.0.0.0"
+  }
+}
